@@ -1,7 +1,20 @@
 #configure aws provider 
+terraform {
+  required_version = ">= 1.0"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 4.66"
+
+    }
+  }
+}
+
 provider "aws" {
   region = var.region
 }
+
 
 # Creating VPC Module
 module "VPC" {
@@ -35,3 +48,11 @@ module "security_group" {
   source                      = "../modules/security-group"
   vpc_id                      = module.VPC.vpc
 }
+
+#  Creating EC2-instance module
+module "ec2-instance" {
+  source                        = "../modules/ec2-instance"
+  public_subnet_az1_id          = module.VPC.public_subnet_az1_id
+  public_security_group_id      = module.security_group.public_security_group_id
+}
+
