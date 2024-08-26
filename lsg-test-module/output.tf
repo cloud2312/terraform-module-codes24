@@ -50,7 +50,7 @@ output "private_data_subnet_az2_id" {
   value = module.VPC.private_data_subnet_az2_id
 }
 
-# Referencing internet gateway output from the VPC module
+# Referencing internet gateway output from VPC module 
 output "aws_internet_gateway" {
   value = module.VPC.aws_internet_gateway
   }
