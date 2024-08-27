@@ -53,6 +53,10 @@ module "security_group" {
 module "ec2-instance" {
   source                        = "../modules/ec2-instance"
   public_subnet_az1_id          = module.VPC.public_subnet_az1_id
+  public_subnet_az2_id          = module.VPC.public_subnet_az2_id
   public_security_group_id      = module.security_group.public_security_group_id
+  private_app_subnet_az1        = module.VPC.private_app_subnet_az1_id
+  private_app_subnet_az2        = module.VPC.private_app_subnet_az2_id
+  nlb_security_group_id         = module.security_group.nlb_security_group_id
 }
 

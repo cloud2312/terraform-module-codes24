@@ -1,10 +1,10 @@
 # Referencing outputs from the ec2-instance module
-output "public_ipv4_address" {
-  value = module.ec2-instance.public_ipv4_address
+output "public_ec2_instance_az1" {
+  value = module.ec2-instance.public_ec2_instance_az1
 }
 
-output "public_ipv4_addresses" {
-  value = module.ec2-instance.public_ipv4_addresses
+output "public_ec2_instance_az2" {
+  value = module.ec2-instance.public_ec2_instance_az2
 }
 
 # Referencing the VPC ID output from the VPC module
@@ -13,12 +13,8 @@ output "vpc_id" {
 }
 
 # Referencing security group IDs from the security_group module
-output "alb_security_group_id" {
-  value = module.security_group.alb_security_group_id
-}
-
-output "ecs_security_group_id" {
-  value = module.security_group.ecs_security_group_id
+output "nlb_security_group_id" {
+  value = module.security_group.nlb_security_group_id
 }
 
 output "public_security_group_id" {
