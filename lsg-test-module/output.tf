@@ -50,3 +50,4 @@ output "private_data_subnet_az2_id" {
 output "aws_internet_gateway" {
   value = module.VPC.aws_internet_gateway
   }
+  

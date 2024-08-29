@@ -58,5 +58,22 @@ module "ec2-instance" {
   private_app_subnet_az1        = module.VPC.private_app_subnet_az1_id
   private_app_subnet_az2        = module.VPC.private_app_subnet_az2_id
   nlb_security_group_id         = module.security_group.nlb_security_group_id
+#  target_group_arn             = [module.nlb.aws_lb_target_group.tg.arn]
 }
 
+# Creating a NLB module 
+module "nlb" {
+  source                        = "../modules/nlb"
+  private_app_subnet_az1_id     = module.VPC.private_app_subnet_az1_id
+  private_app_subnet_az2_id     = module.VPC.private_app_subnet_az2_id
+  vpc_id                        = module.VPC.vpc
+  project_name                  = var.project_name
+}
+
+resource "aws_lb_target_group_attachment" "tg_attachment" {
+  count = length(module.ec2-instance.private_ec2_instance_ids)
+
+  target_group_arn = module.nlb.aws_lb_target_group_arn
+  target_id        = element(module.ec2-instance.private_ec2_instance_ids, count.index)
+  port             = 80
+}
