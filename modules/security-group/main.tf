@@ -1,6 +1,6 @@
 # create security group for the application load balancer
-resource "aws_security_group" "alb_security_group" {
-  name        = "alb security group"
+resource "aws_security_group" "nlb_security_group" {
+  name        = "nlb security group"
   description = "enable http/https access on port 80/443"
   vpc_id      = var.vpc_id
 
@@ -28,10 +28,10 @@ resource "aws_security_group" "alb_security_group" {
   }
 
   tags   = {
-    Name = "alb security group"
+    Name = "nlb security group"
   }
 }
-
+/*
 # create security group for the container
 resource "aws_security_group" "ecs_security_group" {
   name        = "ecs security group"
@@ -43,7 +43,7 @@ resource "aws_security_group" "ecs_security_group" {
     from_port        = 80
     to_port          = 80
     protocol         = "tcp"
-    security_groups  = [aws_security_group.alb_security_group.id]
+    security_groups  = [aws_security_group.ecs_security_group.id]
   }
 
   ingress {
@@ -51,7 +51,7 @@ resource "aws_security_group" "ecs_security_group" {
     from_port        = 443
     to_port          = 443
     protocol         = "tcp"
-    security_groups  = [aws_security_group.alb_security_group.id]
+    security_groups  = [aws_security_group.ecs_security_group.id]
   }
 
   egress {
@@ -65,7 +65,7 @@ resource "aws_security_group" "ecs_security_group" {
     Name = "ecs_security_group"
   }
 }
-
+*/
 # create security group for the public ec2instance 
 resource "aws_security_group" "public_security_group" {
   name        = "public security group"
