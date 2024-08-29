@@ -5,7 +5,7 @@ resource "aws_instance" "public_ec2_instance_az1" {
   subnet_id              = var.public_subnet_az1_id
   vpc_security_group_ids = [var.public_security_group_id]
   key_name               = "mytest"
-  user_data              = file("V:/Test-module-terraform/modules/ec2-instance/script/init.sh")
+  user_data              = ""
 
   tags = {
     Name = "public-ec2-instance_az1"
@@ -19,7 +19,7 @@ resource "aws_instance" "public_ec2_instance_az2" {
   subnet_id              = var.public_subnet_az2_id
   vpc_security_group_ids = [var.public_security_group_id]
   key_name               = "mytest"
-  user_data              = file("V:/Test-module-terraform/modules/ec2-instance/script/init.sh")
+  user_data              = ""
 
   tags = {
     Name = "public-ec2-instance-az2"
@@ -35,7 +35,7 @@ resource "aws_instance" "private_ec2_instance_az1" {
   subnet_id              = var.private_app_subnet_az1
   vpc_security_group_ids = [var.nlb_security_group_id]
   key_name               = "mytest"
-  user_data              = file("V:/Test-module-terraform/modules/ec2-instance/script/init.sh")
+  user_data              = ""
 
   tags = {
     Name = "private-ec2-instance-az1"
@@ -48,7 +48,7 @@ resource "aws_instance" "private_ec2_instance_az2" {
   subnet_id              = var.private_app_subnet_az2
   vpc_security_group_ids = [var.nlb_security_group_id]
   key_name               = "mytest"
-  user_data              = file("V:/Test-module-terraform/modules/ec2-instance/script/init.sh")
+  user_data              = ""
 
   tags = {
     Name = "private-ec2-instance-az2"
